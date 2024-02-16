@@ -12,6 +12,8 @@ describe('Login', () => {
 
     // Assert
     cy.url().should('eq', 'https://www.saucedemo.com/inventory.html')
+
+    cy.screenshot('login com sucesso')
   })
 
   it('Realizar login informando credenciais inválidas', () => {
@@ -33,5 +35,7 @@ describe('Login', () => {
       )
 
     cy.url().should('eq', 'https://www.saucedemo.com/')
+
+    cy.screenshot('login - credenciais inválidas')
   })
 })

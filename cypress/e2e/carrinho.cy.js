@@ -20,6 +20,8 @@ describe('Carrinho', () => {
     cy.get('#shopping_cart_container').click()
 
     cy.contains('Sauce Labs Backpack').should('be.visible')
+
+    cy.screenshot('produto adicionado ao carrinho')
   })
 
   it('Remover produto do carrinho com sucesso', () => {
@@ -43,5 +45,7 @@ describe('Carrinho', () => {
     // Assert
     cy.get('.shopping_cart_badge')
       .should('not.exist')
+
+    cy.screenshot('produto removido do carrinho')
   })
 })

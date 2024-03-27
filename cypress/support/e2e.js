@@ -17,5 +17,23 @@
 import 'cypress-mochawesome-reporter/register'
 import './commands'
 
-// Alternatively you can use CommonJS syntax:
-// require('./commands')
+Cypress.Commands.add('login', (username, password) => {
+  cy.session(
+    [username, password],
+    () => {
+      cy.visit('https://front.serverest.dev')
+      cy.get('[data-testid=email]').type(username)
+      cy.get('[data-testid=senha]').type(password, { log: false })
+      cy.get('[data-testid=entrar]').click()
+      cy.url().should('be.equal', 'https://front.serverest.dev/home')
+    },
+    {
+      validate() {
+        cy.visit('https://front.serverest.dev/home')
+        cy.contains('Serverest Store')
+      }
+    }
+  )
+
+  cy.visit('https://front.serverest.dev/home')
+})
